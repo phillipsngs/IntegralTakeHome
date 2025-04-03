@@ -1,5 +1,4 @@
 from models.Account import Account
-import uuid
 
 
 class AccountService:

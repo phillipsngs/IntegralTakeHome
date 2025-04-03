@@ -17,14 +17,9 @@ async def root():
 
 @app.get("/accounts/{accountId}/transactions")
 async def get_transactions(accountId: str):
-    account_service = AccountService()
-    transaction_service = TransactionService(5)
-
-    account = account_service.get_account(accountId)
-    transactions = []
-
-    if account:
-        transactions = transaction_service.get_transactions(account)
+    account = AccountService().get_account(accountId)
+    transactions = TransactionService(offset=5).get_transactions(account)
+    transactions.sort(key=lambda x: x.timestamp, reverse=True)
 
     return {
         "data": transactions,
@@ -51,5 +46,5 @@ async def get_total_shares():
 @app.get("/contracts/steth/recent_depositors")
 async def get_recent_steth_depositors():
     return {
-        "temp": 1
+        "data": "Not implemented"
     }

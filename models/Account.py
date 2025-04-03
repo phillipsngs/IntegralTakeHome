@@ -1,6 +1,3 @@
-from pydantic import BaseModel
-
-
 class Account:
     id: str
     address: str
